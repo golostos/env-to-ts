@@ -5,7 +5,7 @@ const fs = require('node:fs/promises')
 const { program } = require('commander');
 
 program
-  .version('1.0.0', '-v, --version')
+  .version('1.0.1', '-v, --version')
   .usage('[OPTIONS]...')
   .option('-e, --envfile <value>', 'Envfile name', '.env')
   .option('-t, --types <value>', 'Name of a file with TS types for environment variables', 'EnvironmentVariables.ts')
@@ -15,7 +15,6 @@ program
   .parse(process.argv)
 
 const options = program.opts();
-console.log(options);
 
 const ac = new AbortController();
 const { signal } = ac;
@@ -32,7 +31,6 @@ function writeVarsToFile() {
   }
   fs.readFile(options.envfile).then(file => {
     const parsed = parse(file)
-    // console.log(parsed)
     const envVars = `export interface EnvironmentVariables {\n${keysToTypes(parsed)}}\n`
     return fs.writeFile(options.types, new Uint8Array(Buffer.from(envVars)))
   })

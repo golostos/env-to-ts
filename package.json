@@ -1,17 +1,23 @@
 {
   "name": "@golostos/env-to-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate type definitions from env file",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "url": "https://github.com/golostos/env-to-ts"
+  },
   "bin": {
     "env-to-ts": "./index.js"
   },
   "scripts": {
     "gen": "node index.js -e test/.env -t test/EnvironmentVariables.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["typescript", "envfile", "env"],
+  "author": "Alexander Dmitriev",
+  "license": "MIT",
   "dependencies": {
     "commander": "^9.4.1",
     "dotenv": "^16.0.3"
