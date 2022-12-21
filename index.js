@@ -5,7 +5,7 @@ const fs = require('node:fs/promises')
 const { program } = require('commander');
 
 program
-  .version('1.0.1', '-v, --version')
+  .version('1.0.2', '-v, --version')
   .usage('[OPTIONS]...')
   .option('-e, --envfile <value>', 'Envfile name', '.env')
   .option('-t, --types <value>', 'Name of a file with TS types for environment variables', 'EnvironmentVariables.ts')
@@ -20,7 +20,7 @@ const ac = new AbortController();
 const { signal } = ac;
 
 function writeVarsToFile() {
-  const nodeEnvValue = `"production" | "development" | "testing"`
+  const nodeEnvValue = `'production' | 'development' | 'testing'`
   const keysToTypes = (parsed) => {
     let types = Object.keys(parsed).reduce((acc, cur) => {
       const type = (options.inferNumber && !isNaN(Number(parsed[cur]))) ? 'number' : 'string'
