@@ -1,0 +1,19 @@
+{
+  "name": "@golostos/env-to-ts",
+  "version": "1.0.0",
+  "description": "Generate type definitions from env file",
+  "main": "index.js",
+  "bin": {
+    "env-to-ts": "./index.js"
+  },
+  "scripts": {
+    "gen": "node index.js -e test/.env -t test/EnvironmentVariables.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^9.4.1",
+    "dotenv": "^16.0.3"
+  }
+}
