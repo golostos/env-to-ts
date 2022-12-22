@@ -1,4 +1,4 @@
-# Parser of the ENV file to the Typescript type definitions
+# ENV file parser for Typescript type definitions
 
 ## Installation:
 
@@ -12,10 +12,13 @@ Usage: env-to-ts [OPTIONS]...
 Options:
   -v, --version           output the version number
   -e, --envfile <value>   Envfile name (default: ".env")
-  -t, --types <value>     Name of a file with TS types for environment variables (default: "EnvironmentVariables.ts")        
+  -t, --types <value>     Name of a file with TS types for environment variables
+  -d, --declare <value>   Name of a file with global env type declarations (default:
+                          "environment.d.ts")
   -w, --watch             Watch mode (default: false)
   -ni, --no-infer-number  No infer number type from the env variable
   -ne, --no-node-env      This prevents of using NODE_ENV variable in the types definitions
+  -nd, --no-declare-file  This prevents the creation of a file with global env type declarations        
   -h, --help              display help for command
 ```
 
@@ -50,5 +53,27 @@ export interface EnvironmentVariables {
   DB_SCHEMA: string;
   DATABASE_URL: string;
   NODE_ENV: "production" | "development" | "testing";
+}
+```
+
+### Output file example (environment.d.ts):
+
+```typescript
+/* eslint-disable prettier/prettier */
+declare module 'process' {
+  global {
+    namespace NodeJS {
+      interface ProcessEnv {
+        POSTGRES_USER: string;
+        POSTGRES_PASSWORD: string;
+        POSTGRES_DB: string;
+        DB_HOST: string;
+        DB_PORT: number;
+        DB_SCHEMA: string;
+        DATABASE_URL: string;
+        NODE_ENV: 'production' | 'development' | 'testing';
+      }
+    }
+  }
 }
 ```

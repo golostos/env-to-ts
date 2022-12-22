@@ -6,5 +6,5 @@ export interface EnvironmentVariables {
   DB_PORT: number;
   DB_SCHEMA: string;
   DATABASE_URL: string;
-  NODE_ENV: "production" | "development" | "testing";
+  NODE_ENV: 'production' | 'development' | 'testing';
 }
